@@ -1,0 +1,139 @@
+openapi: 3.0.1
+info:
+  contact:
+    email: lampralexandros@gmail.com
+  description: This is a sample openApi document
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: https://wabli.netlify.app/
+  title: TempApi
+  version: 1.0.0
+externalDocs:
+  description: Find out more about Swagger
+  url: http://swagger.io
+servers:
+- description: miniature-parakeet
+  url: http://83.212.100.226:3002/v1
+security:
+- {}
+tags:
+- description: not yet ready
+  name: weather
+paths:
+  /weather:
+    post:
+      operationId: createweather
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/weather'
+        description: data to be created
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/weather'
+          description: successful operation
+      summary: Creates the data
+      tags:
+      - weather
+      x-eov-operation-handler: controllers/WeatherController
+  /weather/{weatherId}:
+    delete:
+      operationId: deleteweather
+      parameters:
+      - description: the Id parameter
+        explode: false
+        in: path
+        name: weatherId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          description: successful operation
+      summary: Delete the element
+      tags:
+      - weather
+      x-eov-operation-handler: controllers/WeatherController
+    get:
+      operationId: getweather
+      parameters:
+      - description: the Id parameter
+        explode: false
+        in: path
+        name: weatherId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/weather'
+          description: successful operation
+      summary: Get the element
+      tags:
+      - weather
+      x-eov-operation-handler: controllers/WeatherController
+    put:
+      operationId: updateweather
+      parameters:
+      - description: the Id parameter
+        explode: false
+        in: path
+        name: weatherId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/weather'
+        description: data to be updated
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/weather'
+          description: successful operation
+      summary: Updates the element
+      tags:
+      - weather
+      x-eov-operation-handler: controllers/WeatherController
+  /weather/getAll:
+    get:
+      operationId: getAllweather
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/weather'
+                type: array
+          description: successful operation
+      summary: Get all the data
+      tags:
+      - weather
+      x-method-getAll: "true"
+      x-eov-operation-handler: controllers/WeatherController
+components:
+  schemas:
+    weather:
+      example:
+        _id: _id
+      properties:
+        _id:
+          type: string
+      type: object

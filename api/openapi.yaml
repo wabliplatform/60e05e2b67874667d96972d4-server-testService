@@ -19,117 +19,8 @@ security:
 - {}
 tags:
 - description: not yet ready
-  name: city
-- description: not yet ready
   name: weather
 paths:
-  /city:
-    post:
-      operationId: createcity
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/city'
-        description: data to be created
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/city'
-          description: successful operation
-      summary: Creates the data
-      tags:
-      - city
-      x-eov-operation-handler: controllers/CityController
-  /city/{cityId}:
-    delete:
-      operationId: deletecity
-      parameters:
-      - description: the Id parameter
-        explode: false
-        in: path
-        name: cityId
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          description: successful operation
-      summary: Delete the element
-      tags:
-      - city
-      x-eov-operation-handler: controllers/CityController
-    get:
-      operationId: getcity
-      parameters:
-      - description: the Id parameter
-        explode: false
-        in: path
-        name: cityId
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/city'
-          description: successful operation
-      summary: Get the element
-      tags:
-      - city
-      x-eov-operation-handler: controllers/CityController
-    put:
-      operationId: updatecity
-      parameters:
-      - description: the Id parameter
-        explode: false
-        in: path
-        name: cityId
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/city'
-        description: data to be updated
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/city'
-          description: successful operation
-      summary: Updates the element
-      tags:
-      - city
-      x-eov-operation-handler: controllers/CityController
-  /city/getAll:
-    get:
-      operationId: getAllcity
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/city'
-                type: array
-          description: successful operation
-      summary: Get all the data
-      tags:
-      - city
-      x-method-getAll: "true"
-      x-eov-operation-handler: controllers/CityController
   /weather:
     post:
       operationId: createweather
@@ -239,18 +130,6 @@ paths:
       x-eov-operation-handler: controllers/WeatherController
 components:
   schemas:
-    city:
-      example:
-        cityName: cityName
-        _id: _id
-      properties:
-        _id:
-          type: string
-        cityName:
-          type: string
-      required:
-      - cityName
-      type: object
     weather:
       example:
         _id: _id
